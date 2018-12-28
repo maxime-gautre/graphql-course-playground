@@ -1,0 +1,16 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Application's entry point
+GET         /                     core.controllers.HomeController.index
+GET         /@/about              core.controllers.HomeController.about
+
+# Graphql endpoint
+GET         /graphql              courses.controllers.CourseController.graphql(query: String, variables: Option[String], operation: Option[String])
+POST        /graphql              courses.controllers.CourseController.graphqlBody
+GET         /render-schema        courses.controllers.CourseController.renderSchema
+
+# Map static resources from the /public folder to the /assets URL path
+GET         /favicon.ico          core.controllers.XAssets.favicon
+GET         /assets/*file         core.controllers.XAssets.versioned(path="/public", file: controllers.Assets.Asset)
