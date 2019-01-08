@@ -2,16 +2,13 @@ package courses.controllers
 
 import scala.concurrent.{ExecutionContext, Future}
 import scala.util.{Failure, Success}
-
 import play.api.libs.json._
 import play.api.mvc._
-
 import sangria.execution._
 import sangria.marshalling.playJson._
 import sangria.parser.{QueryParser, SyntaxError}
 import sangria.renderer.SchemaRenderer
-
-import courses.persistence.UserRepository
+import courses.persistence.{CourseRepository, UserRepository}
 import courses.schema.{CourseContext, SchemaDefinition}
 
 class CourseController(cc: ControllerComponents)(implicit ec: ExecutionContext) extends AbstractController(cc) {
@@ -44,7 +41,7 @@ class CourseController(cc: ControllerComponents)(implicit ec: ExecutionContext) 
         Executor.execute(
           SchemaDefinition.CoursesSchema,
           queryAst,
-          new CourseContext(new UserRepository), // todo move this
+          new CourseContext(new UserRepository, new CourseRepository), // todo move this
           operationName = operation,
           variables = variables getOrElse Json.obj(),
           deferredResolver = SchemaDefinition.Resolver,

@@ -1,7 +1,7 @@
 package courses.schema
 
-import courses.persistence.UserRepository
+import courses.persistence.{CourseRepository, UserRepository}
 
-class CourseContext(val userRepository: UserRepository) {
+class CourseContext(val userRepository: UserRepository, val courseRepository: CourseRepository) {
 
 }

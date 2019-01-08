@@ -4,10 +4,10 @@ import courses.schema.{Identifiable, SchemaDefinition}
 import sangria.macros.derive._
 import sangria.schema.ObjectType
 
-case class User(id: Long, name: String) extends Identifiable
+case class Category(id: Long, name: String) extends Identifiable
 
-object User {
-  implicit val UserType: ObjectType[Unit, User] = deriveObjectType[Unit, User](
+object Category {
+  implicit val CategoryType: ObjectType[Unit, Category] = deriveObjectType[Unit, Category](
     Interfaces(SchemaDefinition.IdentifiableType)
   )
 }
